@@ -4,7 +4,31 @@
 	var defaultWidth = 200;
 	var defaultHeight = 100;
 
-
+	function renderWaveData(canvas, buffer) {
+		var ctx = canvas.getContext('2d');
+		var canvasWidth = canvas.width;
+		var canvasHeight = canvas.height;
+		var canvasHalfHeight = canvasHeight * 0.5;
+		var bufferLength = buffer.length;
+		
+		ctx.lineWidth = 1;
+		ctx.strokeStyle = 'rgb(0, 255, 0)';
+		ctx.beginPath();
+		var sliceWidth = canvasWidth * 1.0 / bufferLength;
+		var x = 0;
+		for(var i = 0; i < bufferLength; i++) {
+			var v = 1 - buffer[i];
+			var y = v * canvasHalfHeight;
+			if(i === 0) {
+				ctx.moveTo(x, y);
+			} else {
+				ctx.lineTo(x, y);
+			}
+			x += sliceWidth;
+		}
+		ctx.lineTo(canvasWidth, canvasHalfHeight);
+		ctx.stroke();
+	}
 
 	proto.createdCallback = function() {
 		var canvas = document.createElement('canvas');
@@ -15,11 +39,29 @@
 		this.appendChild(canvas);
 
 		this.resetCanvas(this.context);
+
 	};
 
 	proto.attachTo = function(analyser) {
 		console.log('attached to analyser node', analyser);
-		console.log(this.canvas);
+
+		var bufferLength = analyser.frequencyBinCount;
+		var resultsArray = new Float32Array(bufferLength);
+		var self = this;
+
+		animate();
+
+		function animate() {
+
+			requestAnimationFrame(animate);
+
+			analyser.getFloatTimeDomainData(resultsArray);
+
+			self.resetCanvas();
+			renderWaveData(self.canvas, resultsArray);
+			
+		}
+
 	};
 
 	proto.resetCanvas = function() {
