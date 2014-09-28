@@ -4,15 +4,30 @@
 	var defaultWidth = 200;
 	var defaultHeight = 100;
 
+
+
 	proto.createdCallback = function() {
 		var canvas = document.createElement('canvas');
 		canvas.width = defaultWidth;
 		canvas.height = defaultHeight;
+		this.canvas = canvas;
+		this.context = canvas.getContext('2d');
 		this.appendChild(canvas);
+
+		this.resetCanvas(this.context);
 	};
 
 	proto.attachTo = function(analyser) {
 		console.log('attached to analyser node', analyser);
+		console.log(this.canvas);
+	};
+
+	proto.resetCanvas = function() {
+		var ctx = this.context;
+		var canvas = this.canvas;
+
+		ctx.fillStyle = 'rgba(0, 50, 0, 1)';
+		ctx.fillRect(0, 0, canvas.width, canvas.height);
 	};
 
 	//
@@ -34,5 +49,4 @@
 	}
 
 }).call(this);
-
 
