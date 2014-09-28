@@ -1,0 +1,26 @@
+{
+  "name": "openmusic-oscilloscope",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Oscilloscope.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openmusic/oscilloscope"
+  },
+  "keywords": [
+    "oscilloscope",
+    "web",
+    "components",
+    "web",
+    "audio"
+  ],
+  "author": "sole",
+  "license": "Apache 2",
+  "bugs": {
+    "url": "https://github.com/openmusic/oscilloscope/issues"
+  },
+  "homepage": "https://github.com/openmusic/oscilloscope"
+}
