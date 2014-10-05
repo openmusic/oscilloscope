@@ -2,6 +2,8 @@
 
 > A component for plotting wave data on a canvas
 
+[![Install with NPM](https://nodei.co/npm/openmusic-oscilloscope.png?downloads=true&stars=true)](https://nodei.co/npm/openmusic-oscilloscope/)
+
 ** YOU NEED SUPPORT FOR WEB COMPONENTS IN YOUR BROWSER BECAUSE WE'RE NOT SHIMMING ANYTHING IN **
 
 Firefox: go to `about:config`, find `dom.webcomponents.enabled` and set it to true.
